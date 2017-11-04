@@ -2,7 +2,7 @@
   "name": "ninja-rest-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "babel-watch app.js",
     "babel-node": "babel-node --",
