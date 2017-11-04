@@ -8,7 +8,10 @@ router.get('/ninjas', (req, res) =>{
 })
 //Add a new Ninja to the database
 router.post('/ninjas', (req, res) =>{
-	res.send({type: 'POST'})
+	res.send({
+		name: 'Seun',
+		rank: 'Black-Belt'
+	})
 })
 //Update a Ninja in the database
 router.put('/ninjas/:id', (req, res) =>{

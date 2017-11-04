@@ -8,15 +8,15 @@ const port = process.env.PORT || 3000;
 
 // Set up the express app
 const app = express();
+// Parse incoming requests data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //use imported router
 app.use('/api',routes)
 
 // Log requests to the console.
 app.use(volleyball);
-
-// Parse incoming requests data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 //Routes
 app.get('/api', (req, res)=>{
