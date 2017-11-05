@@ -2,11 +2,21 @@ import mongoose from 'mongoose'
 
 const Schema = mongoose.Schema;
 
+//Create Geo location Schema
+const GeoSchema = new Schema({
+	type: {
+		type: String,
+		default: 'Point'
+	},
+	coordinates: {
+		type:[Number],
+		index: "2dsphere"
+	}
+});
 //Create Schema & Model
 const NinjaSchema = new Schema({
 	name: {
-		type: String,
-		required: [true, 'Name field is required']
+		type: String
 	},
 	rank: {
 		type: String
@@ -14,8 +24,8 @@ const NinjaSchema = new Schema({
 	available: {
 		type: Boolean,
 		default: false
-	}
-	//add geo location later
+	},
+	geometry: GeoSchema
 });
 
 const Ninja = mongoose.model('ninja', NinjaSchema);
