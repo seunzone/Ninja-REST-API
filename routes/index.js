@@ -5,7 +5,15 @@ const router = express.Router();
 
 //Get a List of Nijas from the Database
 router.get('/ninjas', (req, res, next) =>{
-	res.send({type: 'GET'})
+	/*Ninja.find({}).then(function(ninja){
+		res.send(ninja)
+	}) */
+	Ninja.geoNear(
+		{type: 'Point', coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]},
+		{maxDistance: 100000, spherical: true}
+	).then(function(ninja){
+		res.send(ninja);
+	});
 })
 //Add a new Ninja to the database
 router.post('/ninjas', (req, res, next) =>{
