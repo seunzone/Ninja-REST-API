@@ -1,19 +1,27 @@
 import express from 'express'
 import volleyball from 'volleyball'
 import bodyParser from 'body-parser'
+import mongoose from 'mongoose'
 //import Routes
-import routes from './routes'
+import routes from './routes/index'
 // Defining the Port Variable
 const port = process.env.PORT || 3000;
 
 // Set up the express app
 const app = express();
+//Connect to Mongo DB
+mongoose.connect('mongodb://localhost/ninjago');
+mongoose.Promise = global.Promise;
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //use imported router
 app.use('/api',routes)
+//Error Handling Middleware
+app.use(function(err, req, res, next){
+	res.status(422).send({error: err.message});
+})
 
 // Log requests to the console.
 app.use(volleyball);

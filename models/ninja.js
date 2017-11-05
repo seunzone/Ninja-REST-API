@@ -16,4 +16,7 @@ const NinjaSchema = new Schema({
 		default: false
 	}
 	//add geo location later
-})
+});
+
+const Ninja = mongoose.model('ninja', NinjaSchema);
+export default Ninja;
