@@ -12,6 +12,8 @@ const app = express();
 //Connect to Mongo DB
 mongoose.connect('mongodb://localhost/ninjago');
 mongoose.Promise = global.Promise;
+
+app.use(express.static('public')); 
 // Parse incoming requests data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
